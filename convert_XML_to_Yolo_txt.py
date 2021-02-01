@@ -56,7 +56,6 @@ def convert_xml2yolo( lut ):
                 b = (float(xmin), float(xmax), float(ymin), float(ymax))
                 try:
                     bb = convert_coordinates((width,height), b)
-                    #print(bb)
                     f.write(label_str + " " + " ".join([("%.6f" % a) for a in bb]) + '\n')
                 except:
                     toDelete.append("/"+fname_out)
@@ -65,16 +64,7 @@ def convert_xml2yolo( lut ):
 
 
         print ("wrote %s" % fname_out)
-    print(toDelete)
-    for f in toDelete:
-        filename = f.split('.')
-        if os.path.exists(os.getcwd() + f):
-            print("Deleting...." + f)
-            os.remove(os.getcwd() + filename[0] + '.jpg')
-            os.remove(os.getcwd() + filename[0] + '.xml')
-            os.remove(os.getcwd() + f)
-
-
+    print("Files with invalid annotations: ", toDelete)
 
 def main():
     convert_xml2yolo( lut )
