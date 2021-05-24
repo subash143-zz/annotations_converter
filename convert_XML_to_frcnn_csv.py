@@ -36,7 +36,7 @@ def convert_xml2frcnnpytorch():
             xmax = ((item.getElementsByTagName('bndbox')[0]).getElementsByTagName('xmax')[0]).firstChild.data
             ymax = ((item.getElementsByTagName('bndbox')[0]).getElementsByTagName('ymax')[0]).firstChild.data
             if float(xmax) - float(xmin) == 0 or float(ymax) - float(ymin) == 0:
-            	print("Invalid width/height of annotation: "fname_out)
+            	print("Invalid width/height of annotation: ", fname_out)
             else:
             	rows.append([fname_out, width, height, "[" + str(xmin) +", "+ str(ymin) + ", " + str(float(xmax)-float(xmin)) + ", " + str(float(ymax)-float(ymin)) + "]", classid])
 
